@@ -40,7 +40,7 @@
                     <h3 class="fw-bold mt-2">Acesso ao sistema</h3>
                     <p class="text-muted">Digite suas credenciais para continuar</p>
                 </div>
-                        <form id="loginForm" novalidate> 
+                        <form id="loginForm" > 
                             <!-- CAMPO-SENHA -->
                             <div class="mb-4">
                                 <label for="email" class="form-label">E-mail</label>
@@ -86,23 +86,35 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
         
         <script>
-            const telaEnvio = document.getElementById('telaEnvio');
-            const telaChat = document.getElementById('telaChat');
-            const campoTexto = document.getElementById('campoTexto');
-            const btnEnviar = document.getElementById('btnEnviar');
-            const btnVoltar = document.getElementById('btnVoltar');
-            const listaMensagens = document.getElementById('listaMensagens');
+            document.getElementById('loginForm').addEventListener(
+                'submit', function(e){
+                    e.preventDefault();
 
-            btnEnviar.onclik = () => {
-                const texto = campoTexto.value.trim()
+                    const email = document.getElementById('email').value;
+                    const senha = document.getElementById('senha').value;
 
-                if(texto != ''){
-                    
+                    if(email === 'admin@email.com' && senha === '1234'){
+                        //USUÁRIO E SENHA CORRETO -> REDIRECIONAR PARA UMA NOVA PÁGINA
+                        
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Bem-vindo!',
+                            text: 'Redirecionando...',
+                            timer: 1500,
+                            showConfirmButton: false
+                        }) .then(() => {
+                            window.location.href = 'aula05-dashboard.html';
+                        })
+                        
+                    } else{
+                        Swal.fire('Erro', 'Usuário ou senha incorreto', 'error');
+                    }
                 }
-            }
+            )
         
         </script>
         
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
     </body>
 </html>
