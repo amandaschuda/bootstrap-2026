@@ -6,6 +6,135 @@
         <title>Aula06 - formulario profissional</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+        <style>
+            
+    :root {
+        --cor-primaria: #4361ee;
+        --cor-primaria-hover: #3a56d4;
+        --cor-fundo: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        --cor-card: #ffffff;
+        --cor-borda: #e2e8f0;
+        --cor-texto-principal: #0f172a;
+        --cor-texto-secundario: #64748b;
+        --cor-sucesso: #10b981;
+        --sombra-suave: 0 4px 24px rgba(15, 23, 42, 0.06);
+        --sombra-focus: 0 0 0 0.25rem rgba(67, 97, 238, 0.2);
+        --transicao: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body {
+        background: var(--cor-fundo);
+        min-height: 100vh;
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        color: var(--cor-texto-principal);
+    }
+
+    /* Container mais largo */
+    .container-formulario {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .secao-form {
+        background: var(--cor-card);
+        border-radius: 1rem;
+        padding: 1.75rem;
+        margin-bottom: 1.5rem;
+        box-shadow: var(--sombra-suave);
+        border: 1px solid var(--cor-borda);
+        transition: var(--transicao);
+    }
+    .secao-form:hover {
+        box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+        transform: translateY(-2px);
+    }
+
+    .titulo-secao {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--cor-texto-principal);
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid var(--cor-borda);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+    }
+    .titulo-secao i { color: var(--cor-primaria); font-size: 1.4rem; }
+
+    .form-label { font-weight: 500; color: #334155; margin-bottom: 0.4rem; }
+    .form-control, .form-select {
+        border: 1.5px solid #cbd5e1;
+        padding: 0.75rem 0.9rem;
+        border-radius: 0.6rem;
+        background-color: #fafbfc;
+        transition: var(--transicao);
+    }
+    .form-control:focus, .form-select:focus {
+        border-color: var(--cor-primaria);
+        box-shadow: var(--sombra-focus);
+        background-color: #fff;
+    }
+    .form-control.is-valid, .form-select.is-valid { border-color: var(--cor-sucesso); background-image: none; }
+    .form-control.is-invalid, .form-select.is-invalid { border-color: #ef4444; background-image: none; }
+
+    .input-group-text {
+        background: #f1f5f9;
+        border: 1.5px solid #cbd5e1;
+        border-right: none;
+        color: var(--cor-texto-secundario);
+        border-radius: 0.6rem 0 0 0.6rem;
+    }
+    .input-group .form-control {
+        border-left: none;
+        border-radius: 0 0.6rem 0.6rem 0;
+    }
+    .input-group .form-control:focus { border-left: 1.5px solid var(--cor-primaria); }
+
+    .btn-primario {
+        background: var(--cor-primaria);
+        border: none;
+        padding: 0.85rem 2rem;
+        border-radius: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        transition: var(--transicao);
+    }
+    .btn-primario:hover {
+        background: var(--cor-primaria-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(67, 97, 238, 0.3);
+    }
+    .btn-primario:active { transform: translateY(0); }
+    
+    .btn-secundario {
+        background: transparent;
+        border: 1.5px solid #cbd5e1;
+        color: #475569;
+        padding: 0.85rem 1.5rem;
+        border-radius: 0.6rem;
+        font-weight: 500;
+        transition: var(--transicao);
+    }
+    .btn-secundario:hover { background: #f1f5f9; border-color: #94a3b8; }
+
+    .form-check-input:checked { background-color: var(--cor-primaria); border-color: var(--cor-primaria); }
+    .text-link { color: var(--cor-primaria); text-decoration: none; font-weight: 500; }
+    .text-link:hover { text-decoration: underline; }
+
+    /* Header elegante */
+    .cabecalho-cadastro {
+        background: linear-gradient(120deg, var(--cor-primaria) 0%, #7209b7 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 1rem 1rem 0 0;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 12px rgba(67, 97, 238, 0.2);
+    }
+
+        </style>
+    
     </head>
     <body>
         
@@ -23,6 +152,35 @@
                 <form action="" class="needs-validation" id="formularioCadastro">
                     <div class="secao-from">
                         <h2 class="titulo-secao"><i class="bi bi-person-badge"></i>Dados Pessoais</h2>
+                        <div class="row gap-3">
+                            <div class="col-12 col-mb-8">
+                                <label for="nomeCompleto" class="form-label">Nome completo</label>
+                                <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto" placeholder="Ex:Maria da Silva">
+                                <div class="invalid-feedback">Informe o nome completo </div>
+                            </div>
+                            
+                            <div class="col-6 col-mb-2">
+                                <label for="cpf" class="form-label">CPF</label>
+                                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Ex: 000.000.000-00">
+                                <div class="invalid-feedback"> CPF Inválido. </div>
+                            </div>
+                            
+                            <div class="col-6 col-mb-2">
+                                <label for="dataNascimento" class="form-label">Nascimento</label>
+                                <input type="date" class="form-control" id="nascimento" name="" required>
+                                <div class="invalid-feedback">Selecione a data  </div>
+                            </div>
+
+                            <div class="col-12 col-mb-4">
+                                <label for="genero" class="form-label">Genero</label>
+                                <select name="genero" id="genero">
+                                    <option value="" selected disabled>Selecione...</option>
+                                    <option value="M" >Masculino</option>
+                                    <option value="F" >Feminino</option>
+                                    <option value="O" >Outros / Prefiro não informar...</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </form>
         </div>
